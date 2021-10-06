@@ -1,6 +1,9 @@
 package routes
 
-import "github.com/gofiber/fiber/v2"
+import (
+	handler "github.com/andreasaiforesee/template/pkg"
+	"github.com/gofiber/fiber/v2"
+)
 
 func SetupRoutes(app *fiber.App) {
 	app.Get("/", func(c *fiber.Ctx) error {
@@ -8,7 +11,8 @@ func SetupRoutes(app *fiber.App) {
 	})
 
 	app.Get("/books", func(c *fiber.Ctx) error {
-		return c.SendString("all books")
+		res := handler.HandlerGetAllBook(c)
+		return c.SendString(res)
 	})
 
 	app.Get("/book", func(c *fiber.Ctx) error {
