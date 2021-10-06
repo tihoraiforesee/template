@@ -2,6 +2,15 @@ package pkg
 
 import "github.com/gofiber/fiber/v2"
 
-func HandlerGetAllBook(ctx *fiber.Ctx) string {
-	return "all books"
+type HandlerInterface interface {
+	HandlerGetAllBook(ctx *fiber.Ctx) string
+}
+
+type Handler struct {
+	Service ServiceInterface
+}
+
+func (h *Handler) HandlerGetAllBook(ctx *fiber.Ctx) string {
+	books := h.Service.GetBooks()
+	return books
 }

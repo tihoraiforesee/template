@@ -5,13 +5,21 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
-func SetupRoutes(app *fiber.App) {
+type RoutesInterface interface {
+	SetupRoutes(app *fiber.App)
+}
+
+type Routes struct {
+	handler handler.HandlerInterface
+}
+
+func (r *Routes) SetupRoutes(app *fiber.App) {
 	app.Get("/", func(c *fiber.Ctx) error {
 		return c.SendString("Hello, World 👋!")
 	})
 
 	app.Get("/books", func(c *fiber.Ctx) error {
-		res := handler.HandlerGetAllBook(c)
+		res := r.handler.HandlerGetAllBook(c)
 		return c.SendString(res)
 	})
 
