@@ -10,7 +10,7 @@ type Handler struct {
 	Service ServiceInterface
 }
 
-func (h *Handler) HandlerGetAllBook(ctx *fiber.Ctx) string {
+func (h Handler) HandlerGetAllBook(ctx *fiber.Ctx) string {
 	books := h.Service.GetBooks()
 	return books
 }

@@ -5,10 +5,6 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
-type RoutesInterface interface {
-	SetupRoutes(app *fiber.App)
-}
-
 type Routes struct {
 	handler handler.HandlerInterface
 }
