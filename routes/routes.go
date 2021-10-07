@@ -20,7 +20,8 @@ func (r *Routes) SetupRoutes(app *fiber.App) {
 	})
 
 	app.Get("/book", func(c *fiber.Ctx) error {
-		return c.SendString("single book")
+		res := r.handler.HandlerGetBook(c)
+		return c.SendString(res.Name)
 	})
 
 	app.Post("/books", func(c *fiber.Ctx) error {
